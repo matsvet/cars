@@ -1,7 +1,7 @@
 const CHANGE_FAVOURITE = 'CHANGE-FAVOURITE';
 
 let initialState = {
-    cars: [
+    favouritess: [
         {
             id: 1,
             brand: 'LADA',
@@ -109,8 +109,7 @@ const carsReducer = (state = initialState, action) => {
                 ...state,
                 cars: state.cars.map(car => {
                     if (car.id == action.carId) {
-                        let antiFav = !car.isFavourite
-                        car.isFavourite = antiFav;
+                        car.isFavourite = !car.isFavourite;
                     }
                     debugger
                 })

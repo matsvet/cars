@@ -4,6 +4,19 @@ import style from './CarsItem.module.css';
 let CarsItem = (props) => {
     let car = props.carInfo;
 
+    let checkFavourite = () =>
+        car.isFavourite
+            ? <div>♥</div>
+            : <div>♡</div>;
+
+    let carElement = React.createRef();
+
+    let onFavouriteClick = () => {
+        let id = carElement.current.id;
+        console.log(id);
+        props.changeFavourites(id);
+    }
+
     return (
         <div className={style.carsitem}>
             <div className={style.txt}>{car.postDate}</div>
@@ -18,7 +31,14 @@ let CarsItem = (props) => {
             <div className={style.txt}>{car.transmission}</div>
             <div className={style.txt}>{car.body}</div>
             <div className={style.txt}>{car.city}</div>
-            <div className={style.txt}>{car.isFavourite}</div>
+            <div
+                ref={carElement}
+                className={style.txt}
+                onClick={onFavouriteClick}
+                id={car.id}
+            >
+                    {checkFavourite()}
+            </div>
         </div>
     )
 }

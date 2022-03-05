@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import CarsPage from "./CarsPage";
+import {changeFavouriteCreator} from "../../redux/carsReducer";
 
 let mapStateToProps = (state) => {
     return {
@@ -9,7 +10,9 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = (dispatch) => {
-    return 'wowowow'
+    return {
+        changeFavourite: (id) => dispatch(changeFavouriteCreator(id))
+    }
 }
 
 const CarsContainer = connect(mapStateToProps, mapDispatchToProps)(CarsPage);

@@ -8,6 +8,7 @@ const CarsPage = (props) => {
         <CarsItem
             key={car.id}
             carInfo={car}
+            changeFavourites={props.changeFavourite}
         />
     )
 
