@@ -1,0 +1,25 @@
+.header {
+    grid-area: head;
+    background-color: #a9bfa9;
+    display: flex;
+}
+
+.header img {
+    width: 60px;
+    padding: 10px;
+}
+
+.item {
+    color: darkred;
+    padding: 10px;
+}
+
+.signItem {
+    color: #000000;
+    padding: 10px;
+    float: right;
+}
+
+.name {
+    display: flex;
+}

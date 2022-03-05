@@ -1,0 +1,10 @@
+.navbar {
+    grid-area: nav;
+    background-color: #42e242;
+    padding: 10px;
+}
+
+.item {
+    color: darkred;
+    padding: 10px;
+}

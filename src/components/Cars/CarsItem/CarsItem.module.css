@@ -1,0 +1,8 @@
+.carsitem {
+    padding: 20px;
+    display: flex;
+}
+
+.txt {
+    padding-right: 10px;
+}

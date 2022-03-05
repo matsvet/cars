@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import {Route, Routes} from "react-router";
+import Header from './components/Header/Header'
+import Navbar from './components/Navbar/Navbar'
+import AuthForm from "./components/Auth/AuthForm";
+import NewsContainer from "./components/News/NewsContainer";
+import CarsContainer from "./components/Cars/CarsContainer";
+import FavouritesContainer from "./components/Favourites/FavouritesContainer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className='appWrapper'>
+            <Header/>
+            <Navbar/>
+            <div className='appWrapperContent'>
+                <Routes>
+                    <Route path='/auth' element={<AuthForm/>}/>
+                    <Route path='/cars' element={<CarsContainer/>}/>
+                    <Route path='/favourites' element={<FavouritesContainer/>}/>
+                    <Route path='/news' element={<NewsContainer/>}/>
+                </Routes>
+            </div>
+        </div>
+    );
 }
 
 export default App;
