@@ -15,7 +15,6 @@ const NewsPage = (props) => {
     )
 
     return <div className={style.newspage}>
-        Ну нихуя ж себе новости!
         {news}
     </div>
 }

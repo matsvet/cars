@@ -1,11 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
+import FavouritesPage from "./FavouritesPage";
 import {changeFavouriteCreator} from "../../redux/carsReducer";
-import CarsTable from "./CarsTable/CarsTable";
 
 let mapStateToProps = (state) => {
+
+    let favouriteCars = state.carsPage.cars.filter(car => car.isFavourite)
+
     return {
-        cars: state.carsPage.cars,
+        cars: favouriteCars,
     }
 }
 
@@ -15,6 +18,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const CarsContainer = connect(mapStateToProps, mapDispatchToProps)(CarsTable);
+const FavouritesPageContainer = connect(mapStateToProps, mapDispatchToProps)(FavouritesPage);
 
-export default CarsContainer;
+export default FavouritesPageContainer;

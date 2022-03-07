@@ -3,8 +3,8 @@
   grid-template-areas:
           "head head"
           "nav p";
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 50px 1fr;
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: 60px 1fr;
   grid-gap: 0px;
 }
 

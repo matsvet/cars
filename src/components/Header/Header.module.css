@@ -1,23 +1,30 @@
 .header {
     grid-area: head;
-    background-color: #a9bfa9;
-    display: flex;
+    height: auto;
+    background-color: #d8ddea;
+    display: inline-flex;
+    align-items: center;
 }
 
 .header img {
-    width: 60px;
+    width: 70px;
+    height: 60px;
     padding: 10px;
 }
 
 .item {
-    color: darkred;
+    color: #0405d1;
     padding: 10px;
+    font-weight: bolder;
+    font-size: larger;
+    font-family: Dubai;
+    display: inline-flex;
+    align-items: center;
 }
 
 .signItem {
-    color: #000000;
-    padding: 10px;
-    float: right;
+    display: inline-block;
+    right: auto;
 }
 
 .name {

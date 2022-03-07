@@ -47,7 +47,7 @@ let initialState = {
             ownerName: 'Тёма',
             adFrom: 'Авто.ру',
             reference: 'https://auto.ru/cars/used/sale/vaz/granta/1114894832-03045815/?from=searchline',
-            postDate: '2022-03-02T13:51',
+            postDate: '2022-03-02T17:19',
             isFavourite: true
         },
         {
@@ -110,9 +110,9 @@ const carsReducer = (state = initialState, action) => {
                 cars: state.cars.map(car => {
                     if (car.id == action.carId) {
                         let antiFav = !car.isFavourite
-                        car.isFavourite = antiFav;
+                        car.isFavourite = antiFav
                     }
-                    debugger
+                    return car
                 })
             }
         }

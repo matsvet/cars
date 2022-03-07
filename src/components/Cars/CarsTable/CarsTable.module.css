@@ -1,0 +1,9 @@
+.priceText {
+    font-weight: bold;
+}
+
+.heartButton {
+    font-size: large;
+    display: inline-flex;
+    align-items: center;
+}

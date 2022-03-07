@@ -1,6 +1,7 @@
 import React from "react";
 import style from './Header.module.css';
 import {NavLink} from "react-router-dom";
+import {Button} from "antd";
 
 const Header = () => {
     return <div className={style.header}>
@@ -12,8 +13,10 @@ const Header = () => {
         </div>
 
         <div className={style.signItem}>
-            <NavLink to='/auth'>
-                Войти
+            <NavLink to='/signin'>
+                <Button size={"large"}>
+                    Войти
+                </Button>
             </NavLink>
         </div>
     </div>
