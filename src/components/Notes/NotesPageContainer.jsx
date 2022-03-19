@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import NewsPage from "./NewsPage";
+import NotesPage from "./NotesPage";
 
 let mapStateToProps = (state) => {
     return {
@@ -9,9 +9,9 @@ let mapStateToProps = (state) => {
 }
 
 let mapDispatchToProps = (dispatch) => {
-    return 'wowowow'
+    return {}
 }
 
-const NewsContainer = connect(mapStateToProps, mapDispatchToProps)(NewsPage);
+const NewsPageContainer = connect(mapStateToProps, mapDispatchToProps)(NotesPage);
 
-export default NewsContainer;
+export default NewsPageContainer;

@@ -1,0 +1,33 @@
+.dateText {
+    display: flex;
+    justify-content: center;
+}
+
+.nameText {
+    font-weight: bold;
+    color: #00028b;
+    /*font-size: small;*/
+}
+
+.priceText {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.mileageText {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.heartButton {
+    font-size: large;
+    display: inline-flex;
+    align-items: center;
+}
+
+.mainImage {
+    width: 80px;
+    border-radius: 8px;
+}

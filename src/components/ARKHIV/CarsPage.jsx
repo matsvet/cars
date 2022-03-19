@@ -4,7 +4,7 @@ import CarsItem from "./CarsItem/CarsItem";
 import {Table, Tag} from "antd";
 import "@ant-design/icons"
 import {UserOutlined} from "@ant-design/icons";
-import CarsTable from "../Cars/CarsTable/CarsTable";
+import CarsTable from "../CarsDisplayComponents/CarsTable/CarsTable";
 
 const CarsPage = (props) => {
 

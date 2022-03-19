@@ -2,31 +2,44 @@
     grid-area: head;
     height: auto;
     background-color: #d8ddea;
-    display: inline-flex;
-    align-items: center;
+    display: grid;
+    grid-template-areas:
+            "pic slogan log";
 }
 
 .header img {
-    width: 70px;
-    height: 60px;
+    width: 60px;
+    height: 50px;
     padding: 10px;
+    margin-left: 3px;
 }
 
 .item {
-    color: #0405d1;
-    padding: 10px;
-    font-weight: bolder;
-    font-size: larger;
-    font-family: Dubai;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-}
-
-.signItem {
-    display: inline-block;
-    right: auto;
+    color: #000000;
+    font-weight: bolder;
+    font-size: large;
 }
 
 .name {
     display: flex;
+    align-items: center;
 }
+
+.slogan {
+    grid-area: slogan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    color: #ffffff;
+}
+
+.signItem {
+    grid-area: log;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+

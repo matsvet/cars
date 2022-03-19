@@ -1,11 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
+import {changeFavouriteCreator} from "../../../redux/carsReducer";
 import FavouritesPage from "./FavouritesPage";
-import {changeFavouriteCreator} from "../../redux/carsReducer";
+
 
 let mapStateToProps = (state) => {
-
-    let favouriteCars = state.carsPage.cars.filter(car => car.isFavourite)
+    let favouriteCars = state.carsPage.cars.filter(car => car.called)
 
     return {
         cars: favouriteCars,

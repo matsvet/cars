@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 .appWrapper {
   display: grid;
   grid-template-areas:
@@ -11,6 +13,6 @@
 .appWrapperContent {
   grid-area: p;
   display: inline-block;
-  height: 95vh;
+  height: 90vh;
   overflow: auto;
 }
