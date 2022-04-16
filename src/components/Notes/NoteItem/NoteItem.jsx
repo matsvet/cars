@@ -3,9 +3,10 @@ import style from './NoteItem.module.css';
 import {Card} from "antd";
 
 let NoteItem = (props) => {
-    return <Card title={props.title} extra={<a href={props.reference}>{props.whereFrom}</a>}>
+    return <div title={props.title} extra={<a href={props.reference}>{props.whereFrom}</a>}>
         <p>{props.text}</p>
-    </Card>
+
+    </div>
 }
 
 export default NoteItem;

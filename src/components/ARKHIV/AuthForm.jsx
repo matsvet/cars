@@ -1,5 +1,5 @@
 import React from "react";
-import style from './SignInForm.module.css'
+import style from '../Auth/SignInForm.module.css'
 import {Form, Input, Button, Checkbox} from "antd";
 import {NavLink} from "react-router-dom";
 

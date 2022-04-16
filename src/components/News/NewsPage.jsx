@@ -3,6 +3,7 @@ import style from './NewsPage.module.css'
 import NewsItem from "./NewsItem/NewsItem";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {Context} from "../../firebase/firebase";
+import Preloader from "../Preloader/Preloader";
 
 const NewsPage = () => {
     const {firestore} = useContext(Context)
@@ -10,7 +11,7 @@ const NewsPage = () => {
         firestore.collection('news').orderBy('title')
     )
 
-    if (loading) {return <div>Загруз Очка</div>}
+    if (loading) {return <Preloader/>}
 
     let arrayNews = news.map(n =>
     {

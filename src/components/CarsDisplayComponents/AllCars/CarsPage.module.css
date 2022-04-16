@@ -1,4 +1,24 @@
 .filterBlock {
-    background-color: #fff7f7;
+    background-color: #f7fffa;
     margin: 30px;
+}
+
+.filterAreas {
+    display: flex;
+    justify-content: center;
+}
+
+.filterItem {
+    width: 120px;
+    margin: 10px 10px 5px 5px;
+}
+
+.buttonsBlock {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.buttonsBlock Button {
+    margin-right: 20px;
 }

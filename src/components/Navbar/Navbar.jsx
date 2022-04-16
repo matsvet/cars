@@ -4,7 +4,8 @@ import {NavLink} from "react-router-dom";
 import {Button, Menu, Switch} from 'antd';
 import {
     MailOutlined, AppstoreOutlined, SettingOutlined, CarOutlined, PaperClipOutlined,
-    HeartOutlined, SearchOutlined, CheckSquareOutlined, MenuUnfoldOutlined, MenuFoldOutlined
+    HeartOutlined, SearchOutlined, CheckSquareOutlined, MenuUnfoldOutlined,
+    MenuFoldOutlined, BookOutlined
 } from '@ant-design/icons';
 
 
@@ -64,7 +65,7 @@ class Navbar extends React.Component {
                         <Menu.Item key="3" icon={<CheckSquareOutlined />}><NavLink to='/comparation'>Сравнение</NavLink></Menu.Item>
                     </SubMenu>
                     <Menu.Item key="5" icon={<PaperClipOutlined />}><NavLink to='/news'>Новости</NavLink></Menu.Item>
-                    <Menu.Item key="6" icon={<PaperClipOutlined />}><NavLink to='/notes'>Заметки</NavLink></Menu.Item>
+                    <Menu.Item key="6" icon={<BookOutlined />}><NavLink to='/notes'>Заметки</NavLink></Menu.Item>
                 </Menu>
             </div>
         );

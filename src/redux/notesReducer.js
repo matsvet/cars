@@ -19,9 +19,8 @@ export default notesReducer;
 
 export const setNotes = (notes) => ({type: SET_NOTES, notes: notes})
 
-export const getNotesThunkCreator = (userId) => async (dispatch) => {
-    let data = useCollectionData(
-        firestore.collection('tachki')
-    )
-    dispatch(setNotes(data))
+export const getNotesThunkCreator = (userId) => (dispatch, {getFirestore}) => {
+    const firestore = getFirestore()
+    const notes = firestore.collection('notes')
+    dispatch(setNotes(notes))
 }

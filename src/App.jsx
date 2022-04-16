@@ -9,7 +9,7 @@ import NewsPageContainer from "./components/News/NewsPageContainer";
 import CarsPageContainer from "./components/CarsDisplayComponents/AllCars/CarsPageContainer";
 import FavouritesPageContainer from "./components/CarsDisplayComponents/Favourites/FavouritesPageContainer";
 import HomePage from "./components/Homepage/HomePage";
-import {Component, useContext} from "react";
+import React, {Component, useContext} from "react";
 import {connect} from "react-redux";
 import SimpleLogin from "./components/ARKHIV/SimpleForm/SimpleLogin";
 import SimpleSignUp from "./components/ARKHIV/SimpleForm/SimpleSignUp";
@@ -17,11 +17,14 @@ import ComparatedPageContainer from "./components/CarsDisplayComponents/Comparat
 import {useAuthState} from "react-firebase-hooks/auth";
 import {Context} from "./firebase/firebase";
 import NotesPageContainer from "./components/Notes/NotesPageContainer";
+import Preloader from "./components/Preloader/Preloader";
 
 
 const App = () => {
     const { auth } = useContext(Context)
     const [ user, loading, error ] = useAuthState(auth)
+
+    if (loading) {return <Preloader/>}
 
     return (
         <div className='appWrapper'>

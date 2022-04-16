@@ -1,9 +1,11 @@
 import {UserOutlined} from "@ant-design/icons";
 import {Button, Checkbox, Table} from "antd";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import style from "./CarsTable.module.css"
 
 const CarsTable = (props) => {
+    let [cars, setCars] = useState(props.cars)
+    useEffect( () => setCars(props.cars), [props.cars])
 
     const columns = [
         {
@@ -110,8 +112,7 @@ const CarsTable = (props) => {
         },
     ];
 
-    const data = props.cars
-    const filterData = props.makeFilter
+    const data = cars
 
     return <Table columns={columns} dataSource={data}/>
 }
