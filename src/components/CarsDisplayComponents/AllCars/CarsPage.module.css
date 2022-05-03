@@ -22,3 +22,9 @@
 .buttonsBlock Button {
     margin-right: 20px;
 }
+
+.moreItemsButton {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}

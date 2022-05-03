@@ -13,11 +13,11 @@ import React, {Component, useContext} from "react";
 import {connect} from "react-redux";
 import SimpleLogin from "./components/ARKHIV/SimpleForm/SimpleLogin";
 import SimpleSignUp from "./components/ARKHIV/SimpleForm/SimpleSignUp";
-import ComparatedPageContainer from "./components/CarsDisplayComponents/Comparated/ComparatedPageContainer";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {Context} from "./firebase/firebase";
 import NotesPageContainer from "./components/Notes/NotesPageContainer";
 import Preloader from "./components/Preloader/Preloader";
+import ComparatedPage from "./components/CarsDisplayComponents/Comparated/ComparatedPage";
 
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
                     <Route path='/signup' element={<SignUpForm/>}/>
                     <Route path='/cars' element={<CarsPageContainer/>}/>
                     <Route path='/favourites' element={<FavouritesPageContainer/>}/>
-                    <Route path='/comparation' element={<ComparatedPageContainer/>}/>
+                    <Route path='/comparation' element={<ComparatedPage/>}/>
                     <Route path='/news' element={<NewsPageContainer/>}/>
                     <Route path='/notes' element={<NotesPageContainer/>}/>
                 </Routes>

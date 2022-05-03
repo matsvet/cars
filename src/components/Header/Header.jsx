@@ -12,7 +12,7 @@ const Header = () => {
     return <div className={style.header}>
         <div className={style.name}>
             <NavLink to='/'>
-                <img src='https://www.pngkey.com/png/full/442-4425060_tesla-model-3-filled-icon-tesla-model-3.png'/>
+                <img src='https://cdn-icons.flaticon.com/png/512/1435/premium/1435087.png?token=exp=1651241848~hmac=bff781e3fa0a96562207dad98058125a'/>
             </NavLink>
             <NavLink to='/'>
                 <div className={style.item}>

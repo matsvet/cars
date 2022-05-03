@@ -20,11 +20,15 @@ const HomePage = () => {
         return firebase.push('todos', sampleTodo)
     }
 
-    const add = async ({car}) => {
-        await firestore.collection('news').add(car)
+    const addArray = async ({car}) => {
+        const docId = car.id
+        await firestore.collection('cars').doc(docId.toString()).set(car)
+        // await firestore.collection('cars').add(car)
     }
     const addCars = () => {
-        TempStore.news.map(car => add({car}))
+        TempStore.cars2.map(car => addArray({car}))
+        // let car = TempStore.cars2[0]
+        // addArray({car})
     }
 
     const contentStyle = {
@@ -48,7 +52,11 @@ const HomePage = () => {
                 <div>
                     <h2 style={contentStyle}>Таблица сравнения предложений на рынке</h2>
                 </div>
+                <div>
+                    <h2 style={contentStyle}>Делай всё, что хочешь!</h2>
+                </div>
             </Carousel>
+            <Button onClick={addCars}>Добавить немножко данных</Button>
         </div>
         :
         <Navigate to="/signin"/>

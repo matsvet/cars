@@ -1,12 +1,18 @@
-import TempStore from "../tempStore/TempStore";
 import {Context} from "../index";
+import {firestore} from "../firebase/firebase";
 
 const CHANGE_FAVOURITE = 'CHANGE-FAVOURITE';
+const ADD_FAVOURITE = 'ADD_FAVOURITE';
+const ADD_COMPARATION = 'ADD_COMPARATION';
 const CHANGE_COMPARATION = 'CHANGE-COMPARATION';
 const APPLY_FILTER = 'APPLY-FILTER';
+const SET_CARS = 'SET_CARS';
+const SET_PREVIOUS_CAR_ID = 'SET_PREVIOUS_CAR_ID'
+const SET_DS = 'SET_DS';
+const SET_LV = 'SET_LV';
 
 let initialState = {
-    cars: TempStore.cars
+    cars: [],
 }
 
 const carsReducer = (state = initialState, action) => {
@@ -35,6 +41,42 @@ const carsReducer = (state = initialState, action) => {
                 })
             }
         }
+        case ADD_FAVOURITE: {
+            return {
+                ...state,
+                favouriteCars: [...state.favouriteCars, action.car],
+            }
+        }
+        case ADD_COMPARATION: {
+            return {
+                ...state,
+                comparatedCars: [...state.comparatedCars, action.car],
+            }
+        }
+        case SET_CARS: {
+            return {
+                ...state,
+                cars: [...state.cars, ...action.car],
+            }
+        }
+        case SET_PREVIOUS_CAR_ID: {
+            return {
+                ...state,
+                previousCarId: action.id,
+            }
+        }
+        // case SET_DS: {
+        //     return {
+        //         ...state,
+        //         documentSnapshots: action.dS
+        //     }
+        // }
+        // case SET_LV: {
+        //     return {
+        //         ...state,
+        //         lastVisible: action.lV
+        //     }
+        // }
         // case APPLY_FILTER: {
         //     return {
         //         ...state,
@@ -59,19 +101,78 @@ export const changeComparatedCreator = (id) => ({
     type: CHANGE_COMPARATION,
     carId: id
 })
-
-const initialFilter = {
-    mark: null,
-    model: null,
-    minPrice: null,
-    maxPrice: null,
-    minYear: null,
-    maxYear: null,
-    city: null,
-}
-export const applyFilterCreator = (filter = initialFilter) => ({
-    type: APPLY_FILTER,
-    carFilter: filter
+export const addFavouriteCarAC = (car, uid) => ({
+    type: ADD_FAVOURITE,
+    car
 })
+export const addComparatedCarAC = (car, uid) => ({
+    type: ADD_COMPARATION,
+    car
+})
+export const setCarsAC = (car) => ({
+    type: SET_CARS,
+    car
+})
+export const setPreviousCarIdAC = (id) => ({
+    type: SET_PREVIOUS_CAR_ID,
+    id
+})
+
+// export const documentSnapshotsAC = (dS) => ({
+//     type: SET_DS,
+//     dS
+// })
+//
+// export const lastVisibleAC = (lV) => ({
+//     type: SET_LV,
+//     lV
+// })
+
+// const initialFilter = {
+//     mark: null,
+//     model: null,
+//     minPrice: null,
+//     maxPrice: null,
+//     minYear: null,
+//     maxYear: null,
+//     city: null,
+// }
+// export const applyFilterCreator = (filter = initialFilter) => ({
+//     type: APPLY_FILTER,
+//     carFilter: filter
+// })
+
+export const getFirstCarsData = () => {
+    return async (dispatch) => {
+        let data = await firestore.collection('cars').orderBy('id').limit(2)
+        data.get().then(
+            // (doc) => doc.docs.map(item => console.log(item.data()))
+            (doc) => {
+                let mashinki = []
+                doc.docs.map(item => mashinki.push(item.data()))
+                dispatch(setCarsAC(mashinki))
+
+                let prevId = mashinki[mashinki.length-1].id
+                dispatch(setPreviousCarIdAC(prevId))
+            }
+        )
+    }
+}
+export const getMoreCarsData = (prevId) => {
+    return async (dispatch) => {
+        let data = await firestore.collection('cars').orderBy('id').startAfter(prevId).limit(2)
+        data.get().then(
+            // (doc) => doc.docs.map(item => console.log(item.data()))
+            (doc) => {
+                let mashinki = []
+                doc.docs.map(item => mashinki.push(item.data()))
+                dispatch(setCarsAC(mashinki))
+
+                let prevId = mashinki[mashinki.length-1].id
+                dispatch(setPreviousCarIdAC(prevId))
+            }
+        )
+    }
+}
 
 export default carsReducer;

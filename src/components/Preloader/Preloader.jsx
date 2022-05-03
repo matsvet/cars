@@ -4,7 +4,7 @@ import style from './Preloader.css'
 
 const Preloader = () => {
     return (
-        <div className={style.prloaderBlock}>
+        <div className={style.preloaderBlock}>
             <div className="lds-default">
                 <div></div>
                 <div></div>

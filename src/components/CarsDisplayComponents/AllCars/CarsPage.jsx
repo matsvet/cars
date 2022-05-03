@@ -3,14 +3,20 @@ import style from "./CarsPage.module.css"
 import {Button, DatePicker, InputNumber, Select} from "antd";
 import {useContext, useEffect, useState} from "react";
 import {Context} from "../../../firebase/firebase";
-import {useCollectionData} from "react-firebase-hooks/firestore";
 import Preloader from "../../Preloader/Preloader";
+import TempStore from "../../../tempStore/TempStore";
+import { collection, query, orderBy, startAfter, limit, getDocs } from "firebase/firestore";
 
 const {Option} = Select;
 
 const CarsPage = (props) => {
+    useEffect(() => {
+        if (props.cars.length === 0) {props.getFirstCarsData()}
+    }, []);
+
     const {firestore} = useContext(Context)
-    const [cars, loading] = useCollectionData(firestore.collection('tachki'))
+    // const [cars, loading] = useCollectionData(firestore.collection('tachki').limit(2))
+    const [newCars, setNewCars] = useState()
     const [filteredCars, setFilteredCars] = useState()
     const [placeHolders, setPlaceHolders] = useState({
         mark: 'Марка',
@@ -23,10 +29,33 @@ const CarsPage = (props) => {
         owner: 'Продавец'
     })
 
-    const Filter = () => {
+    const firstItems = async () => {
+        const first = query(collection(firestore, "tachki"), limit(2))
+        let documentSnapshots = await getDocs(first)
+        let mashinki = []
 
+        documentSnapshots.docs.map(car => {mashinki.push(car.data())})
+        props.setCars(mashinki)
+        props.setDocumentSnapshots(documentSnapshots)
+    }
+    const moreItems = async () => {
+        let documentSnapshots = props.dS
+        let lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1]
+        const next = query(collection(firestore, "tachki"),
+            startAfter(lastVisible),
+            limit(2));
+        documentSnapshots = await getDocs(next)
+        let mashinki = []
+
+        documentSnapshots.docs.map(car => {mashinki.push(car.data())})
+        props.setDocumentSnapshots(documentSnapshots)
+        props.setLastVisible(lastVisible)
+        props.setCars(mashinki)
+    }
+
+    const Filter = () => {
         const [carFilter, setCarFilter] = useState({
-            mark: null,
+            mark: "all",
             model: null,
             minPrice: null,
             maxPrice: null,
@@ -37,9 +66,9 @@ const CarsPage = (props) => {
         })
 
         function clearFilter() {
-            setFilteredCars(cars)
+            // setFilteredCars(cars)
             setCarFilter({
-                mark: null,
+                mark: "all",
                 model: null,
                 minPrice: null,
                 maxPrice: null,
@@ -61,7 +90,7 @@ const CarsPage = (props) => {
         }
 
         const applyAllFilter = () => {
-            let filtCars = cars
+            let filtCars = newCars
             if (carFilter.mark) {
                 if (carFilter.mark === 'all') {
                     setCarFilter({...carFilter, mark: null})
@@ -155,6 +184,7 @@ const CarsPage = (props) => {
                     onChange={(value) => setCarFilter({...carFilter, mark: value})}
                     onSearch={(val) => setCarFilter({...carFilter, mark: val})}
                 >
+                    {TempStore.filterMark.map(f => {return <Option value={f.mark}>{f.mark}</Option>})}
                     <Option value="all">Все</Option>
                     <Option value="Chevrolet">Chevrolet</Option>
                     <Option value="Daewoo">Daewoo</Option>
@@ -170,8 +200,9 @@ const CarsPage = (props) => {
                     filterOption={(input, option) =>
                         option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                     }
-                    disabled={!carFilter.mark}
+                    disabled={carFilter.mark === "all"}
                 >
+                    {/*{TempStore.filterMark["Chevrolet"].map(f => {return <Option value={f}>{f}</Option>})}*/}
                     <Option value="Lanos">Lanos</Option>
                     <Option value="Nexia">Nexia</Option>
                     <Option value="2115">2115</Option>
@@ -248,12 +279,18 @@ const CarsPage = (props) => {
         <div>
             <Filter/>
         </div>
-        {loading ? <Preloader/> :
+        {/*{loading ? <Preloader/> :*/}
             <CarsTable
-                cars={filteredCars ? filteredCars : cars}
+                cars={filteredCars ? filteredCars : props.cars}
                 changeFavourite={props.changeFavourite}
                 changeComparated={props.changeComparated}
-            />}
+                addFavourite={props.addFavourite}
+                addComparation={props.addComparation}
+            />
+        {/*}*/}
+        <div className={style.moreItemsButton} >
+            <Button onClick={() => props.getMoreCarsData(props.prevId)}>Загрузить ещё (TC)</Button>
+        </div>
     </div>
 }
 
